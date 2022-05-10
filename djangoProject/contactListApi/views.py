@@ -26,12 +26,12 @@ class ContactCRUDCBV(View):
             except:
                 msg = {"msg":"Contact not found"}
                 json_data = JSONRenderer().render(msg)
-                return HttpResponse(json_data, content_type='application/json')
+                return HttpResponse(json_data, content_type='application/json', status=401)
 
         contact = Contact.objects.all()
         serializer = ContactSerializer(contact, many=True)
         json_data = JSONRenderer().render(serializer.data)
-        return HttpResponse(json_data, content_type='application/json')
+        return HttpResponse(json_data, content_type='application/json', status=200)
 
     def post(self, request, *args, **kwargs):
         json_data = request.body
@@ -42,9 +42,9 @@ class ContactCRUDCBV(View):
             serializer.save()
             msg = {"msg":"contact created successfully"}
             json_data = JSONRenderer().render(msg)
-            return HttpResponse(json_data, content_type='application/json')
+            return HttpResponse(json_data, content_type='application/json', status=200)
         json_data = JSONRenderer().render(serializer.errors)
-        return HttpResponse(json_data, content_type='application/json')
+        return HttpResponse(json_data, content_type='application/json', status=401)
 
     def put(self, request, *args, **kwargs):
         json_data = request.body

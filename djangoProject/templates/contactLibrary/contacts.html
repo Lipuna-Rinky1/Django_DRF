@@ -1,0 +1,43 @@
+<!-- <p>Helloooooo world</p> -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>django assignment</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <h1>Lists</h1>
+        <button onclick="location.href='/app/contact-create'" type="button" style="float: right;">
+            Create List</button>
+        
+        {% if contact_list %}
+        <table style="width:100%" border="1px solid black" bgcolor="#96D4D4" >
+            <thead>
+                <th style="width:10%">NAME</th>
+                <th style="width:5%">SIZE </th>
+                <th style="width:5%">TYPE</th>
+                <th style="width:5%">LAST UPDATED</th>
+                <th style="width:5%">CREATOR</th>
+                <th style="width:5%">FOLDER</th>
+                <th style="width:5%">USED IN</th>
+            </thead>
+            {% for contact in contact_list %}
+            <tr>
+                <td>{{contact.name}}</td>
+                <td>{{contact.size}}</td>
+                <td>{{contact.type}}</td>
+                <td>{{contact.last_updated_on}}</td>
+                <td>{{contact.creator}}</td>
+                <td>{{contact.folder}}</td>
+                <td>{{contact.used_in}}</td>
+            </tr>
+            {%  endfor %}
+        </table>
+        {% else %}
+        <p>No records found</p>
+        {% endif %}
+        
+    </body>
+
+</html>
